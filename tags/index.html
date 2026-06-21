@@ -31,6 +31,8 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>标签 - 大数据实习日志</title>
 
@@ -329,7 +331,7 @@
                 
 
 <div class="text-center tagcloud">
-  <a href="/internship-blog/tags/Hive/" style="font-size: 15px; color: #bbe">Hive</a> <a href="/internship-blog/tags/%E5%A4%8D%E7%9B%98/" style="font-size: 15px; color: #bbe">复盘</a> <a href="/internship-blog/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 15px; color: #bbe">大数据</a> <a href="/internship-blog/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 15px; color: #bbe">实习</a> <a href="/internship-blog/tags/%E8%B0%83%E8%AF%95/" style="font-size: 15px; color: #bbe">调试</a>
+  <a href="/internship-blog/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 15px; color: #bbe">大数据</a> <a href="/internship-blog/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 15px; color: #bbe">实习</a>
 </div>
 
               </div>
@@ -376,9 +378,58 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+<i class="iconfont icon-love"></i>
+<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+<br>
+<span id="site-runtime">本站已运行 <span id="runtime_span"></span></span>
+<script>
+(function () {
+  function updateRuntime() {
+    var start = new Date("2026/06/21 09:00:00");
+    var now = new Date();
+    var diff = now - start;
+    if (diff < 0) diff = 0;
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var el = document.getElementById("runtime_span");
+    if (el) el.innerHTML = d + " 天 " + h + " 时 " + m + " 分 " + s + " 秒";
+  }
+  updateRuntime();
+  setInterval(updateRuntime, 1000);
+})();
+</script>
+
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
   
   
 </div>
@@ -431,6 +482,8 @@
 
 
   <script  src="/internship-blog/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

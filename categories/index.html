@@ -31,6 +31,8 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>分类 - 大数据实习日志</title>
 
@@ -373,132 +375,6 @@
       </div>
     </div>
   
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="周总结"
-        id="heading-d7ab84c2002e4f4a1d4259ee51cb8d21" role="tab" data-toggle="collapse" href="#collapse-d7ab84c2002e4f4a1d4259ee51cb8d21"
-        aria-expanded="false"
-      >
-        周总结
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/internship-blog/categories/%E5%91%A8%E6%80%BB%E7%BB%93/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-d7ab84c2002e4f4a1d4259ee51cb8d21"
-           role="tabpanel" aria-labelledby="heading-d7ab84c2002e4f4a1d4259ee51cb8d21">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/internship-blog/2026/06/21/weekly-placeholder/" title="周总结：待补充"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">周总结：待补充</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="技术笔记"
-        id="heading-53cbe91c4a75476fbe971615e91cbb68" role="tab" data-toggle="collapse" href="#collapse-53cbe91c4a75476fbe971615e91cbb68"
-        aria-expanded="false"
-      >
-        技术笔记
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/internship-blog/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-53cbe91c4a75476fbe971615e91cbb68"
-           role="tabpanel" aria-labelledby="heading-53cbe91c4a75476fbe971615e91cbb68">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/internship-blog/2026/06/21/tech-note-placeholder/" title="技术笔记：待补充"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">技术笔记：待补充</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="问题排查"
-        id="heading-6e621f2f09556b10e0827a0301b164e0" role="tab" data-toggle="collapse" href="#collapse-6e621f2f09556b10e0827a0301b164e0"
-        aria-expanded="false"
-      >
-        问题排查
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/internship-blog/categories/%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-6e621f2f09556b10e0827a0301b164e0"
-           role="tabpanel" aria-labelledby="heading-6e621f2f09556b10e0827a0301b164e0">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/internship-blog/2026/06/21/troubleshoot-placeholder/" title="问题排查：待补充"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">问题排查：待补充</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
 </div>
 
 
@@ -546,9 +422,58 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+<i class="iconfont icon-love"></i>
+<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+<br>
+<span id="site-runtime">本站已运行 <span id="runtime_span"></span></span>
+<script>
+(function () {
+  function updateRuntime() {
+    var start = new Date("2026/06/21 09:00:00");
+    var now = new Date();
+    var diff = now - start;
+    if (diff < 0) diff = 0;
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var el = document.getElementById("runtime_span");
+    if (el) el.innerHTML = d + " 天 " + h + " 时 " + m + " 分 " + s + " 秒";
+  }
+  updateRuntime();
+  setInterval(updateRuntime, 1000);
+})();
+</script>
+
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
   
   
 </div>
@@ -601,6 +526,8 @@
 
 
   <script  src="/internship-blog/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
