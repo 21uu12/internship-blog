@@ -19,15 +19,15 @@
   <meta name="author" content="Ben">
   <meta name="keywords" content="大数据,Hive,Spark,实习">
   
-    <meta name="description" content="AI 应用很容易陷入一种开发方式：改几句 Prompt，手工试两个问题，感觉结果不错就结束。但只要输入换一种说法，或者真实 API 出现超时、限流和格式异常，系统就会暴露出大量没有被定义的行为。 这次我用 TypeScript 和 Vitest 做了一个小型 AI 任务路由器，用它练习两套互补的方法：确定性代码使用 TDD，概率性模型使用评估 Harness。 1. 路由器要解决什么问题路由器接收">
+    <meta name="description" content="AI 应用很容易陷入一种开发方式：改几句 Prompt，手工试两个问题，感觉结果不错就结束。但只要输入换一种说法，或者真实 API 出现超时、限流和格式异常，系统就会暴露出大量没有被定义的行为。 这次我用 TypeScript 和 Vitest 做了一个小型 AI 任务路由器，用它练习两套互补的方法：确定性代码使用 TDD，概率性模型使用评估 Harness。 核心总结：两套约束如何配合TDD 和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用 TDD 和评估 Harness 构建一个 AI 任务路由器">
 <meta property="og:url" content="https://21uu12.github.io/internship-blog/2026/07/18/2026-07-19-ai-router-tdd-harness/index.html">
 <meta property="og:site_name" content="大数据实习日志">
-<meta property="og:description" content="AI 应用很容易陷入一种开发方式：改几句 Prompt，手工试两个问题，感觉结果不错就结束。但只要输入换一种说法，或者真实 API 出现超时、限流和格式异常，系统就会暴露出大量没有被定义的行为。 这次我用 TypeScript 和 Vitest 做了一个小型 AI 任务路由器，用它练习两套互补的方法：确定性代码使用 TDD，概率性模型使用评估 Harness。 1. 路由器要解决什么问题路由器接收">
+<meta property="og:description" content="AI 应用很容易陷入一种开发方式：改几句 Prompt，手工试两个问题，感觉结果不错就结束。但只要输入换一种说法，或者真实 API 出现超时、限流和格式异常，系统就会暴露出大量没有被定义的行为。 这次我用 TypeScript 和 Vitest 做了一个小型 AI 任务路由器，用它练习两套互补的方法：确定性代码使用 TDD，概率性模型使用评估 Harness。 核心总结：两套约束如何配合TDD 和">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-07-19T14:03:46.541Z">
+<meta property="article:modified_time" content="2026-07-19T14:12:21.215Z">
 <meta property="article:author" content="Ben">
 <meta property="article:tag" content="AI Native">
 <meta property="article:tag" content="Evaluation">
@@ -338,7 +338,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k 字
+          3k 字
         
       </span>
     
@@ -349,7 +349,7 @@
         
         
         
-          21 分钟
+          26 分钟
         
       </span>
     
@@ -412,6 +412,54 @@
                 
                 <p>AI 应用很容易陷入一种开发方式：改几句 Prompt，手工试两个问题，感觉结果不错就结束。但只要输入换一种说法，或者真实 API 出现超时、限流和格式异常，系统就会暴露出大量没有被定义的行为。</p>
 <p>这次我用 TypeScript 和 Vitest 做了一个小型 AI 任务路由器，用它练习两套互补的方法：确定性代码使用 TDD，概率性模型使用评估 Harness。</p>
+<h2 id="核心总结：两套约束如何配合"><a href="#核心总结：两套约束如何配合" class="headerlink" title="核心总结：两套约束如何配合"></a>核心总结：两套约束如何配合</h2><p>TDD 和 Harness 不是两套重复的测试，而是约束项目的两个层次：</p>
+<table>
+<thead>
+<tr>
+<th>约束</th>
+<th>TDD</th>
+<th>Harness</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主要对象</td>
+<td>确定性的 TypeScript 代码</td>
+<td>Prompt、模型和完整路由链路</td>
+</tr>
+<tr>
+<td>可执行规格</td>
+<td>Vitest 测试及断言</td>
+<td>带标准答案的评估案例集</td>
+</tr>
+<tr>
+<td>反馈形式</td>
+<td>单个测试通过或失败</td>
+<td>准确率、通过数和失败案例</td>
+</tr>
+<tr>
+<td>防止的问题</td>
+<td>漏实现、过度实现、重构回归</td>
+<td>语义误判、Prompt 退化、小样本错觉</td>
+</tr>
+<tr>
+<td>修改门槛</td>
+<td>Red 正确失败，Green 全部通过</td>
+<td>定向案例通过，再跑完整回归</td>
+</tr>
+</tbody></table>
+<p>在这个项目里，它们形成了六道约束：</p>
+<ol>
+<li>测试先规定 <code>route(input)</code> 的输入输出契约，代码只能围绕业务行为增长。</li>
+<li>Green 阶段只满足当前测试，避免没有证据时提前实现大量路由规则。</li>
+<li>Fake <code>ModelClient</code> 隔离真实 API，让解析、白名单和降级逻辑可以稳定测试。</li>
+<li>评估集把同义改写、混合语言、否定指令和未知任务固定成可重复案例。</li>
+<li>Evaluator 自动暴露失败，使 Prompt 修改必须针对可解释的问题。</li>
+<li>新 Prompt 先通过失败案例，再运行完整回归，避免修好一个输入却破坏其他输入。</li>
+</ol>
+<p>一句话概括：</p>
+<blockquote>
+<p>TDD 回答“代码是否实现了已声明的行为”，Harness 回答“整个 AI 系统在代表性案例上是否持续做出期望决策”。</p>
+</blockquote>
 <h2 id="1-路由器要解决什么问题"><a href="#1-路由器要解决什么问题" class="headerlink" title="1. 路由器要解决什么问题"></a>1. 路由器要解决什么问题</h2><p>路由器接收用户输入，并在四个标签中选择一个：</p>
 <ul>
 <li><code>summarizer</code>：总结内容；</li>
